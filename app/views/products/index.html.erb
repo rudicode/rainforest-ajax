@@ -1,3 +1,4 @@
+</br><%= link_to 'Add a Product', new_product_path %>
 <h1>Products List</h1>
   <table>
     <thead>
@@ -10,7 +11,7 @@
 <% @products.each do |product| %>
     <tr>
       <td><%= product.price_in_cents %></td>
-      <td><%= product.name %></td>
+      <td><%= link_to product.name, product_path(product) %></td>
       <td><%= product.description %></td>
     </tr>
 <% end %>

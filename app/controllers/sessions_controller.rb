@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
     logger.info "[Rainforest.SessionsController.create] Trying to log in #{params[:email]}"
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to products_url, notice: "#{user.email}Logged In."
+      redirect_to products_url, notice: "#{user.email} Logged In."
     else
+      flash.now[:alert] = "Invalid email or password"
       render :new
     end
   end

@@ -21,6 +21,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to products_path
     else
+      logger.info "[Rainforest] Could not Create Product"
       render :new
     end
 
@@ -32,6 +33,7 @@ class ProductsController < ApplicationController
     if @product.update_attributes(product_params)
       redirect_to product_path(@product)
     else
+      logger.info "[Rainforest] Could not Update Product"
       render :edit
     end    
 

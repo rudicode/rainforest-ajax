@@ -9,14 +9,15 @@ class ReviewsController < ApplicationController
   def create
 
     @review = @product.reviews.build(review_params)
-    # above is equivelent to below.
+    # above is equivelent to below commented code.
     #   @review = Review.new( comment: params[:review][:comment],
     #                         product_id: @product.id,
     #                         user_id: current_user.id )
     @review.user = current_user
     if @review.save
-      redirect_to products_path, notice: "Review created successfully"
+      redirect_to products_path, notice: "Review created successfully."
     else
+      flash.now[:alert] = "Could not create Review."
       render 'products/show'
     end
 

@@ -1,13 +1,49 @@
-<% if current_user %>
   
   <h1><%= @product.name %></h1>
   <ul>
     <li>Price: <%= @product.price_in_dollars %></li>
     <li>Description: <%= @product.description %></li>
   </ul>
+<% if current_user %>
   <%= link_to 'Edit Product', edit_product_path(@product) %>|
   <%= link_to 'Delete Product', product_path(@product), :method => :delete %>
+<% end %>
 
   <h3>Reviews</h3>
-  
+  <% @product.reviews.each do |review| %>
+  <p>
+    <%= review.comment %>
+    <br>
+    <% if review.user != nil %>
+      <em>by <%= review.user.email %> </em>
+      Added on: <%= review.created_at %>
+    <% end %>
+  </p>
+  <% end %>
+
+<% if true #current_user %>
+  <h4>New Review</h4>
+
+  <%= form_for([@product, @review]) do |f| %>
+    <% if @review.errors.any? %>
+      <div class="error_explanation">
+        
+        <h2> <%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved.</h2>
+        <ul>
+        <% @review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :comment  %>
+      <%= f.text_area :comment  %>
+    </div>
+    <div class="actions"><%= f.submit %></div>
+  <% end %>
+<% else %>
+  <p><%= link_to 'Login', new_session_path %> to leave a review.</p>
+          
 <% end %>

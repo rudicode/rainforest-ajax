@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
   # creates attr_accessors :password, :password_confirmation
   # and validations to match: :password, :password_confirmation
 
+  #validations
+  validates :email, uniqueness: { case_sensitive: false }
+
 end

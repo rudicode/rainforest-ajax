@@ -1,6 +1,15 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if params[:search].blank?
+      @products = Product.all
+    else
+      @products = Product.find_in_name_and_description(params[:search])
+    end
+
+    if request.xhr?
+      render @products
+    end
+
   end
 
   def show

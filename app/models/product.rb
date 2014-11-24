@@ -9,7 +9,12 @@ class Product < ActiveRecord::Base
 
   def price_in_dollars
     dollars = price_in_cents.to_f / 100.0
-    dollars = sprintf("$%.2f", dollars)
+    sprintf("$%.2f", dollars)
+  end
+
+  # need to fix this so that it is available in the controller.
+  def self.find_in_name_and_description(query)
+    Product.where("LOWER(name) LIKE LOWER(?) or LOWER(description) LIKE LOWER(?)", "%#{query}%","%#{query}%")
   end
 
 

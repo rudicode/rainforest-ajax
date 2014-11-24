@@ -1,5 +1,10 @@
 </br><%= link_to 'Add a Product', new_product_path %>
-<h1>Products List</h1>
+<h1 id='products_list'>Products List</h1>
+<%= form_tag products_path, method: :get, authentication: false, id: 'search-form' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
   <table>
     <thead>
       <tr>
@@ -8,11 +13,7 @@
         <th>Description</th>
       </tr>
     </thead>
-<% @products.each do |product| %>
-    <tr>
-      <td><%= product.price_in_dollars %></td>
-      <td><%= link_to product.name, product_path(product) %></td>
-      <td><%= product.description %></td>
-    </tr>
-<% end %>
+    <tbody id="products"> 
+      <%= render :partial => @products %>
+    </tbody>   
   </table>

@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # need to sign in the newly created user!!!
+      # session[:user_id] = @user.id  # this is ok
+      # self.current_user=(@user)     # this is better
+      set_current_user(@user)         # this one feels better to use
       redirect_to products_url, notice: 'Signed Up!'
     else
       render :new

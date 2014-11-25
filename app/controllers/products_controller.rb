@@ -1,13 +1,19 @@
 class ProductsController < ApplicationController
   def index
     if params[:search].blank?
-      @products = Product.all
+      @products = Product.order(created_at: :desc).page(params[:page])
     else
-      @products = Product.find_in_name_and_description(params[:search])
+      @products = Product.find_in_name_and_description(params[:search],params[:page])
     end
 
-    if request.xhr?
-      render @products
+    # change this to respond to.
+    # if request.xhr?
+    #   render @products
+    # end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
 
   end

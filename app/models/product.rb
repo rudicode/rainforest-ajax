@@ -13,8 +13,8 @@ class Product < ActiveRecord::Base
   end
 
   # need to fix this so that it is available in the controller.
-  def self.find_in_name_and_description(query)
-    Product.where("LOWER(name) LIKE LOWER(?) or LOWER(description) LIKE LOWER(?)", "%#{query}%","%#{query}%")
+  def self.find_in_name_and_description(query,page)
+    Product.where("LOWER(name) LIKE LOWER(?) or LOWER(description) LIKE LOWER(?)", "%#{query}%","%#{query}%").order(created_at: :desc).page(page)
   end
 
 

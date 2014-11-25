@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
     end
 
     respond_to do |format|
+      sleep(3)
       format.html
       format.js
     end

@@ -5,15 +5,20 @@ $(document).on('ready page:load',function(){
     event.preventDefault();
     var searchValue = $('#search').val();
     
-    $.getScript('/products?search=' + searchValue)
+    $.getScript('/products?search=' + searchValue + "&test=testing")
     
   });
 
   // do infinate scrolling
-  $(window).scroll(function() {
-    if ($(window).scrollTop() >  ($(document).height() - $(window).height() - 50)) {
-      console.log("Near Bottom!!");
-      
-    }
-  });
+  if ($('.pagination').length) {
+
+    $(window).scroll(function() {
+      var url = $('.pagination span.next').children().attr('href');
+      if (url && $(window).scrollTop() >  ($(document).height() - $(window).height() - 50)) {
+        console.log($('.pagination span.next').children().attr('href'));
+        $('.pagination').text('Getting more results...');
+        return $.getScript(url);
+      }
+    });
+  }
 });

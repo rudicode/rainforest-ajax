@@ -40,3 +40,5 @@ gem 'pry-rails'
 # gem 'debugger', group: [:development, :test]
 
 gem 'kaminari'
+
+gem 'faker'

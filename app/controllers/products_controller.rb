@@ -6,11 +6,6 @@ class ProductsController < ApplicationController
       @products = Product.find_in_name_and_description(params[:search],params[:page])
     end
 
-    # change this to respond to.
-    # if request.xhr?
-    #   render @products
-    # end
-
     respond_to do |format|
       format.html
       format.js

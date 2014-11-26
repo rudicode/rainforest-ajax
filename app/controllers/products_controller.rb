@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    if true #current_user
+    if current_user
       @review = @product.reviews.build
     end
   end

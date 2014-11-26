@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
     #                         product_id: @product.id,
     #                         user_id: current_user.id )
     @review.user = current_user
+    
     if @review.save
       redirect_to product_path(@review.product_id), notice: "Review created successfully."
     else

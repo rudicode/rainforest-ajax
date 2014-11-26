@@ -1,0 +1,5 @@
+// $('#reviews').html("<%= j(render @product.reviews) %>");
+// $('#reviews p:last-child').append("<%= j(render @product.reviews[-2]) %>");
+$('#reviews').append("<%= j(render @product.reviews[-2]) %>");
+<%# binding.pry %>
+//console.log('products#show.js.erb called.');

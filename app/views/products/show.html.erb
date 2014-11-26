@@ -10,14 +10,14 @@
 <% end %>
 
   <h3>Reviews</h3>
-  <%= render @product.reviews %>
-  <%# above will render the _review.html.erb inside an each loop, you get access to review local varialbe %>
-
+  <div id="reviews">
+    <%= render @product.reviews.select{|x| x.id.present? } %>
+  </div>
 
 <% if current_user %>
   <!-- <h4>Write a Review</h4> -->
 
-  <%= form_for([@product, @review]) do |f| %>
+  <%= form_for([@product, @review], :remote => true) do |f| %>
     <% if @review.errors.any? %>
       <div class="error_explanation">
         

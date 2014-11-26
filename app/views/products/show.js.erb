@@ -1,5 +1,15 @@
-// $('#reviews').html("<%= j(render @product.reviews) %>");
-// $('#reviews p:last-child').append("<%= j(render @product.reviews[-2]) %>");
-$('#reviews').append("<%= j(render @product.reviews[-2]) %>");
+// TODO clear the review text box
+// TODO animate the single new review.
+
+$('#reviews').append("<%= j(render @product.reviews[-2]) %>")
+$('#reviews p:last-child').hide().animate({
+width: "toggle",
+height: "toggle"
+});
+// $('#reviews p:last-child').animate({
+// width: "toggle",
+// height: "toggle"
+// });
+$('#review_comment').val('');
 <%# binding.pry %>
 //console.log('products#show.js.erb called.');

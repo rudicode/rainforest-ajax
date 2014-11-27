@@ -1,15 +1,12 @@
-// TODO clear the review text box
-// TODO animate the single new review.
 
-$('#reviews').append("<%= j(render @product.reviews[-2]) %>")
-$('#reviews p:last-child').hide().animate({
-width: "toggle",
+// gets second last review ( last review will be nil b/c products#show needs
+// to build a review to pass to the form_for.)
+var newReview = $('<%= j(render @product.reviews[-2]) %>').hide();
+
+$('#reviews').append(newReview)
+
+$('#reviews p:last-child').animate({
 height: "toggle"
 });
-// $('#reviews p:last-child').animate({
-// width: "toggle",
-// height: "toggle"
-// });
+
 $('#review_comment').val('');
-<%# binding.pry %>
-//console.log('products#show.js.erb called.');

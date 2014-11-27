@@ -4,7 +4,7 @@ $(document).on('ready page:load',function(){
   $('#search-form').submit( function (event){
     event.preventDefault();
     var searchValue = $('#search').val();
-    
+
     $.getScript('/products?search=' + searchValue + "&test=testing")
     
   });
@@ -21,4 +21,18 @@ $(document).on('ready page:load',function(){
       }
     });
   }
+
+  $('#new_review').on('ajax:beforeSend', function() {
+    if ( $('#review_comment').val().length > 0 ) {
+      $('input[type=submit]').val('Adding Review...').attr('disabled', 'disabled');
+    } else {
+      return false; // stop ajax request if textbox is empty.
+    }
+
+  });
+
+  $('#new_review').on('ajax:complete', function() {
+    $('input[type=submit]').val('Create Review').removeAttr('disabled');
+  });
+
 });

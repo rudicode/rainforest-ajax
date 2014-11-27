@@ -7,14 +7,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-
+    sleep(1) # to simulate some server latency.
     @review = @product.reviews.build(review_params)
     # above is equivelent to below commented code.
     #   @review = Review.new( comment: params[:review][:comment],
     #                         product_id: @product.id,
     #                         user_id: current_user.id )
     @review.user = current_user
-    
+
     if @review.save
       redirect_to product_path(@review.product_id), notice: "Review created successfully."
     else

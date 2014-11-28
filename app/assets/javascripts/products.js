@@ -42,7 +42,7 @@ $(document).on('ready page:load',function(){
 
     $(window).scroll(function() {
       var url = $('.pagination span.next').children().attr('href');
-      if (url && $(window).scrollTop() >  ($(document).height() - $(window).height() - 50)) {
+      if (url && $(window).scrollTop() > ($(document).height() - $(window).height() - 50)) {
         console.log($('.pagination span.next').children().attr('href'));
         $('.pagination').text('Getting more results...');
         return $.getScript(url);

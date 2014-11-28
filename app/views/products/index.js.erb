@@ -4,4 +4,5 @@
 <% else %>
   $('#products').html("<%= j(render @products) %>");
 <% end %>
+
 $('.pagination').replaceWith('<%= j paginate(@products) %>');
